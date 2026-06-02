@@ -1,9 +1,4 @@
 [build]
-  # 1. Path from the root to the folder containing package.json
   base = "website/web"
-  
-  # 2. The command Netlify runs to build your Vite project
   command = "npm run build"
-  
-  # 3. The output folder Vite creates (relative to the base folder above)
   publish = "dist"

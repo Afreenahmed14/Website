@@ -1,3 +1,4 @@
+import "../styles/Technologies.css";
 export default function Technologies({ navigate, siteData }) {
   const tech   = siteData?.technologies ?? {};
   const hero   = tech.hero   ?? { heading: "Modern Technologies.\nExpert Developers.", subtext: "" };
@@ -126,48 +127,17 @@ export default function Technologies({ navigate, siteData }) {
       </section>
 
       <section className="tech-page">
-        <div
-  style={{
-    textAlign: "center",
-    maxWidth: "900px",
-    margin: "0 auto 40px"
-  }}
->
-  <span
-    style={{
-      color: "#2563eb",
-      fontSize: "14px",
-      fontWeight: "600",
-      textTransform: "uppercase",
-      letterSpacing: "1px"
-    }}
-  >
-    Our Expertise
-  </span>
-
-  <h2
-    style={{
-      margin: "12px 0",
-      fontSize: "42px",
-      fontWeight: "800",
-      color: "#0f172a"
-    }}
-  >
-    Powering Digital Success with Industry-Leading Technologies
-  </h2>
-
-  <p
-    style={{
-      color: "#64748b",
-      fontSize: "16px",
-      lineHeight: "1.8"
-    }}
-  >
-    We leverage cutting-edge frontend frameworks, robust backend technologies,
-    and enterprise-grade cloud platforms to build secure, scalable, and
-    high-performing digital solutions tailored to your business objectives.
-  </p>
-</div>
+        <div style={{ textAlign:"center", maxWidth:"900px", margin:"0 auto 40px" }}>
+          <span style={{ color:"#2563eb", fontSize:"14px", fontWeight:"600", textTransform:"uppercase", letterSpacing:"1px" }}>
+            Our Expertise
+          </span>
+          <h2 style={{ margin:"12px 0", fontSize:"42px", fontWeight:"800", color:"#0f172a" }}>
+            {hero.heading.split("\n").map((line, i) => <span key={i}>{line}{i === 0 && <br/>}</span>)}
+          </h2>
+          <p style={{ color:"#64748b", fontSize:"16px", lineHeight:"1.8" }}>
+            {hero.subtext}
+          </p>
+        </div>
         
 
 <div

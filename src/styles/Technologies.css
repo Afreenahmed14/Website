@@ -1,0 +1,226 @@
+/* ═══════════════════════════════════════════════
+   TECHNOLOGIES PAGE STYLES
+═══════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   HERO SECTION
+───────────────────────────────────────────── */
+.tech-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 45%, var(--navy-3) 100%);
+  padding: 80px 5% 88px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-hero h1 {
+  font-family: var(--font-head);
+  font-size: 46px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -1.3px;
+  margin-bottom: 18px;
+}
+
+.tech-hero p {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* ─────────────────────────────────────────────
+   TECH PAGE SECTION
+───────────────────────────────────────────── */
+.tech-page {
+  padding: 72px 5%;
+  background: white;
+}
+
+.tech-section {
+  margin-bottom: 50px;
+}
+
+.tech-section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.tech-section-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.tech-section-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.tech-section h3 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+}
+
+.tech-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.tech-card {
+  background: var(--off);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all var(--transition);
+}
+
+.tech-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.tech-card-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-bottom: 11px;
+}
+
+.tech-card h4 {
+  font-family: var(--font-head);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 5px;
+  letter-spacing: -0.1px;
+}
+
+.tech-card p {
+  font-size: 12px;
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────
+   CTA SECTION
+───────────────────────────────────────────── */
+.cta {
+  padding: 72px 5%;
+  background: var(--off);
+}
+
+.cta-inner {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 55%, #1a3a7a 100%);
+  border-radius: 26px;
+  padding: 64px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 56px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-inner::before {
+  content: '';
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cta-inner h2 {
+  font-family: var(--font-head);
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.6px;
+  margin-bottom: 10px;
+}
+
+.cta-inner p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.75;
+}
+
+.cta-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  min-width: 210px;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .tech-hero h1 {
+    font-size: 40px;
+  }
+
+  .tech-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-hero h1 {
+    font-size: 36px;
+  }
+
+  .tech-page {
+    padding: 52px 5%;
+  }
+
+  .tech-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-inner {
+    padding: 32px 16px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLL / OVERFLOW FIX
+───────────────────────────────────────────── */
+.tech-hero,
+.tech-page,
+.cta {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.tech-card {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+}

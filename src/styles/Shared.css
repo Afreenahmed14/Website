@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
-
 /* ═══════════════════════════════════════════════
-   APP.CSS — COMPLETE UPDATED VERSION
-   Design tokens, global styles, animations, shared components
+   SHARED / GLOBAL STYLES
+   Used across all pages
 ═══════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────
@@ -52,9 +50,9 @@
   --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ═══════════════════════════════════════════════
+/* ─────────────────────────────────────────────
    GLOBAL ANIMATIONS
-═══════════════════════════════════════════════ */
+───────────────────────────────────────────── */
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
@@ -130,9 +128,9 @@
   }
 }
 
-/* ═══════════════════════════════════════════════
+/* ─────────────────────────────────────────────
    RESET / BASE STYLES
-═══════════════════════════════════════════════ */
+───────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -202,9 +200,9 @@ main > *:nth-child(n + 4) {
   animation-delay: 0.22s;
 }
 
-/* ═══════════════════════════════════════════════
+/* ─────────────────────────────────────────────
    NAVBAR
-═══════════════════════════════════════════════ */
+───────────────────────────────────────────── */
 .navbar {
   width: 100%;
   height: 68px;
@@ -307,9 +305,9 @@ main > *:nth-child(n + 4) {
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
-/* ═══════════════════════════════════════════════
+/* ─────────────────────────────────────────────
    BUTTONS
-═══════════════════════════════════════════════ */
+───────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -331,11 +329,6 @@ main > *:nth-child(n + 4) {
   background: #1448b8;
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(37, 99, 235, 0.42);
-}
-
-.btn-primary:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
 }
 
 .btn-secondary {
@@ -360,11 +353,6 @@ main > *:nth-child(n + 4) {
   background: var(--blue-glow);
 }
 
-.btn-secondary:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
 .btn-white {
   display: inline-flex;
   align-items: center;
@@ -385,11 +373,6 @@ main > *:nth-child(n + 4) {
 .btn-white:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
-}
-
-.btn-white:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
 }
 
 .btn-outline-white {
@@ -413,14 +396,9 @@ main > *:nth-child(n + 4) {
   border-color: rgba(255, 255, 255, 0.6);
 }
 
-.btn-outline-white:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
-/* ═══════════════════════════════════════════════
+/* ─────────────────────────────────────────────
    SECTION COMMONS
-═══════════════════════════════════════════════ */
+───────────────────────────────────────────── */
 .sec-label {
   display: inline-block;
   font-size: 11px;
@@ -469,9 +447,7 @@ main > *:nth-child(n + 4) {
   margin: 0 auto;
 }
 
-/* ─────────────────────────────────────────────
-   Badge Tag
-───────────────────────────────────────────── */
+/* Badge tag */
 .badge-tag {
   display: inline-flex;
   align-items: center;
@@ -505,9 +481,9 @@ main > *:nth-child(n + 4) {
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* ═══════════════════════════════════════════════
+/* ─────────────────────────────────────────────
    FOOTER
-═══════════════════════════════════════════════ */
+───────────────────────────────────────────── */
 .footer {
   background: var(--navy);
   padding: 52px 5% 26px;
@@ -600,9 +576,9 @@ main > *:nth-child(n + 4) {
   color: rgba(255, 255, 255, 0.22);
 }
 
-/* ═══════════════════════════════════════════════
+/* ─────────────────────────────────────────────
    STAGGERED CARD REVEAL
-═══════════════════════════════════════════════ */
+───────────────────────────────────────────── */
 .eng-card,
 .why-card,
 .ind-card,
@@ -641,9 +617,9 @@ main > *:nth-child(n + 4) {
   animation-delay: 0.2s;
 }
 
-/* ═══════════════════════════════════════════════
+/* ─────────────────────────────────────────────
    RESPONSIVE MEDIA QUERIES
-═══════════════════════════════════════════════ */
+───────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .sec-title {
     font-size: 26px;
@@ -668,9 +644,9 @@ main > *:nth-child(n + 4) {
   }
 }
 
-/* ═══════════════════════════════════════════════
-   SCROLL / OVERFLOW FIX — GLOBAL
-═══════════════════════════════════════════════ */
+/* ─────────────────────────────────────────────
+   SCROLL / OVERFLOW FIX - GLOBAL
+───────────────────────────────────────────── */
 html,
 body {
   overflow-x: hidden;
@@ -684,49 +660,4 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
-}
-
-/* ═══════════════════════════════════════════════
-   UTILITY CLASSES
-═══════════════════════════════════════════════ */
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.grid {
-  display: grid;
-}
-
-.relative {
-  position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.hidden {
-  display: none;
-}
-
-.visible {
-  display: block;
 }

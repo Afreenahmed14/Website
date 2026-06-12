@@ -1,0 +1,458 @@
+/* ═══════════════════════════════════════════════
+   ADMIN LOGIN STYLES
+   Matches HourlyRecruit Home page design system
+═══════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   OVERLAY / PAGE BACKGROUND
+───────────────────────────────────────────── */
+.admin-login-overlay {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 50%, var(--navy-3) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: var(--font-body);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow decorations matching hero section */
+.admin-login-overlay::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -100px;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.admin-login-overlay::after {
+  content: '';
+  position: absolute;
+  left: -80px;
+  bottom: -100px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   CARD
+───────────────────────────────────────────── */
+.admin-login-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 44px 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+  animation: loginCardIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes loginCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   LOGO AREA
+───────────────────────────────────────────── */
+.admin-login-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.admin-login-logo-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--blue), #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.admin-login-logo-icon:hover {
+  transform: rotate(-6deg) scale(1.06);
+}
+
+.admin-login-logo-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
+}
+
+.admin-login-logo-text {
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
+
+.admin-login-logo-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* ─────────────────────────────────────────────
+   HEADING
+───────────────────────────────────────────── */
+.admin-login-heading {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.admin-login-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────
+   MODE TOGGLE (Username / Email tabs)
+───────────────────────────────────────────── */
+.admin-login-mode-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.admin-login-mode-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+  transition: all 0.15s;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.admin-login-mode-btn:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.admin-login-mode-btn.active {
+  background: rgba(99, 102, 241, 0.3);
+  color: white;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+/* ─────────────────────────────────────────────
+   FORM
+───────────────────────────────────────────── */
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-login-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Input wrapper (icon + input + optional eye button) */
+.admin-login-input-wrap {
+  position: relative;
+}
+
+.admin-login-input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.admin-login-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.admin-login-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 12px 14px 12px 42px;
+  font-size: 14px;
+  color: white;
+  outline: none;
+  font-family: var(--font-body);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.admin-login-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.admin-login-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Password field has extra right padding for eye button */
+.admin-login-input-wrap .admin-login-input.has-eye {
+  padding-right: 44px;
+}
+
+/* Eye toggle button */
+.admin-login-eye-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color var(--transition);
+}
+
+.admin-login-eye-btn:hover {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.admin-login-eye-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ─────────────────────────────────────────────
+   ERROR MESSAGE
+───────────────────────────────────────────── */
+.admin-login-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #fca5a5;
+  line-height: 1.5;
+  animation: loginShake 0.3s ease;
+}
+
+.admin-login-error svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+@keyframes loginShake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-4px); }
+  75%       { transform: translateX(4px); }
+}
+
+/* ─────────────────────────────────────────────
+   SUBMIT BUTTON
+───────────────────────────────────────────── */
+.admin-login-btn {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+  width: 100%;
+}
+
+.admin-login-btn:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.5);
+}
+
+.admin-login-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spinner inside button */
+.admin-login-spinner-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.admin-login-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: loginSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes loginSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────
+   DEMO CREDENTIALS HINT
+───────────────────────────────────────────── */
+.admin-login-hint {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.8;
+}
+
+.admin-login-hint-label {
+  opacity: 0.5;
+}
+
+.admin-login-hint-value {
+  color: #818cf8;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+
+.admin-login-hint-sep {
+  opacity: 0.5;
+}
+
+.admin-login-hint-note {
+  opacity: 0.4;
+  margin-left: 8px;
+}
+
+/* ─────────────────────────────────────────────
+   API STATUS BADGE
+───────────────────────────────────────────── */
+.admin-api-status {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.02em;
+}
+
+.admin-api-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.admin-api-status-dot.online {
+  background: var(--green);
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+}
+
+.admin-api-status-dot.offline {
+  background: #ef4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+}
+
+.admin-api-status-dot.checking {
+  background: var(--amber);
+  animation: loginPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loginPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .admin-login-card {
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .admin-login-heading {
+    font-size: 24px;
+  }
+
+  .admin-login-mode-row {
+    flex-direction: column;
+  }
+
+  .admin-login-mode-btn {
+    flex: unset;
+  }
+}

@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { login as apiLogin } from "../api/Api";
+// import { login as apiLogin } from "../api/Api";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 // Demo fallback credentials (used only when backend is unreachable)
 const DEMO_USER = "Admin";
@@ -25,29 +28,46 @@ export default function AdminLogin({ onLogin }) {
     try {
       // ── Try real backend first (email + password via JWT) ──
       // The backend uses email, so if input looks like an email, try it directly.
+      // const isEmail = form.username.includes("@");
+
+      // if (isEmail) {
+      //   await apiLogin(form.username, form.password);
+      //   onLogin();
+      //   setLoading(false);
+      //   return;
+      // }
+
+      // // ── Non-email input: try backend with username as-is, then fallback ──
+      // let backendSuccess = false;
+      // try {
+      //   await apiLogin(form.username, form.password);
+      //   backendSuccess = true;
+      // } catch {
+      //   // Backend rejected or not reachable — fall through to demo check
+      // }
+
+      // if (backendSuccess) {
+      //   onLogin();
+      //   setLoading(false);
+      //   return;
+      // }
       const isEmail = form.username.includes("@");
 
-      if (isEmail) {
-        await apiLogin(form.username, form.password);
-        onLogin();
-        setLoading(false);
-        return;
-      }
+if (isEmail) {
+  await signInWithEmailAndPassword(
+    auth,
+    form.username,
+    form.password
+  );
 
-      // ── Non-email input: try backend with username as-is, then fallback ──
-      let backendSuccess = false;
-      try {
-        await apiLogin(form.username, form.password);
-        backendSuccess = true;
-      } catch {
-        // Backend rejected or not reachable — fall through to demo check
-      }
+  sessionStorage.setItem(
+    "hr_admin_auth",
+    "1"
+  );
 
-      if (backendSuccess) {
-        onLogin();
-        setLoading(false);
-        return;
-      }
+  onLogin();
+  return;
+}
 
       // ── Demo credential fallback ──────────────────────────────────────────
       if (form.username === DEMO_USER && form.password === DEMO_PASS) {

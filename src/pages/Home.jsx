@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "../styles/Home.css";
 // SVG icons mapped to service names (fallback icon reused for all)
 const ServiceIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -201,7 +201,7 @@ export default function Home({ navigate, siteData }) {
 const why = siteData?.home?.why ?? {
   label: "Why Choose Us",
 
-  heading: "Why Businesses Trust Hourly Recruiters",
+  heading: "Why Businesses Trust Hourly Recruit",
 
   cards: [
     {
@@ -236,7 +236,7 @@ const why = siteData?.home?.why ?? {
 //     name: "John Smith",
 //     role: "CEO, TechNova Solutions",
 //     color: "#2563eb",
-//     quote: "Hourly Recruiters helped us find experienced developers within days. Their hiring process was smooth and efficient."
+//     quote: "Hourly Recruit helped us find experienced developers within days. Their hiring process was smooth and efficient."
 //   },
 //   {
 //     initials: "MR",
@@ -373,18 +373,9 @@ const why = siteData?.home?.why ?? {
       {/* ── WHAT WE OFFER ── */}
       <section className="offer">
         <div className="sec-head">
-          {/* <span className="sec-label"></span>
-          <h2 className="sec-title"></h2>
-          <p className="sec-sub"></p> */}
-          <span className="sec-label">Hourly Recruiters</span>
-
-          <h2 className="sec-title">
-            Connecting Businesses with Exceptional Talent
-          </h2>
-
-          <p className="sec-sub">
-            We specialize in delivering skilled professionals through flexible hourly engagement models, enabling organizations to scale efficiently and achieve their goals with confidence.
-          </p>
+          <span className="sec-label">{offer.label}</span>
+          <h2 className="sec-title">{offer.heading}</h2>
+          <p className="sec-sub">{offer.sub}</p>
         </div>
         <div className="offer-grid">
           {offer.items.map((title, i) => (
@@ -398,20 +389,10 @@ const why = siteData?.home?.why ?? {
 
       {/* ── ENGAGEMENT MODELS ── */}
       <section className="engage">
-        {/* <div className="sec-head">
+        <div className="sec-head">
           <span className="sec-label">{engagement.label}</span>
           <h2 className="sec-title">{engagement.heading}</h2>
           <p className="sec-sub">{engagement.sub}</p>
-        </div> */}<div className="sec-head">
-          <span className="sec-label">Engagement Models</span>
-
-          <h2 className="sec-title">
-            Strategic Talent Solutions for Every Stage of Growth
-          </h2>
-
-          <p className="sec-sub">
-            From startups to enterprises, our customized engagement models provide access to highly skilled professionals, ensuring maximum productivity, flexibility, and long-term business success.
-          </p>
         </div>
         <div className="engage-grid">
           {engagement.models.map((m, i) => (
@@ -501,61 +482,22 @@ const why = siteData?.home?.why ?? {
       <section className="startup">
         <div className="startup-inner">
           <div>
-            {/* <span className="startup-tag">{startup.tag}</span>
+            <span className="startup-tag">{startup.tag}</span>
             <h2>{startup.heading}</h2>
-            <p>{startup.desc}</p> */}
-            <span className="startup-tag">Empowering Business Growth</span>
-
-            <h2>Access Top Talent Without the Hiring Hassle</h2>
-
-            <p>
-              From startups to established enterprises, we provide experienced developers and technology professionals through flexible engagement models, helping you innovate faster, increase productivity, and stay ahead of the competition.
-            </p>
-            {/* <div className="startup-checks">
-              {startup.checks.map(c => <div key={c} className="startup-check">{c}</div>)}
-            </div> */}
+            <p>{startup.desc}</p>
             <div className="startup-checks">
-  {[
-    "Access Pre-Screened Developers",
-    "Flexible Hourly Hiring Models",
-    "Quick Team Scaling & Onboarding",
-    "Cost-Effective Talent Solutions"
-  ].map(c => (
-    <div key={c} className="startup-check">{c}</div>
-  ))}
-</div>
+              {(startup.checks ?? []).map(c => (
+                <div key={c} className="startup-check">{c}</div>
+              ))}
+            </div>
             {/* <button className="btn-primary" onClick={() => navigate("hire")}>Hire Developers</button> */}
           </div>
-          {/* <div style={{ display: "flex", justifyContent: "center" }}>
-            <div className="rocket-card">
-              <h4>{startup.card.heading}</h4>
-              <p>{startup.card.desc}</p>
-              <div className="rocket-stats">
-                {startup.card.stats.map(s => (
-                  <div key={s.label} className="rs">
-                    <strong>{s.value}</strong><span>{s.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div> */}
-
-          
-
 <div style={{ display: "flex", justifyContent: "center" }}>
   <div className="rocket-card">
-    <h4>Accelerate Your Business Growth</h4>
-
-    <p>
-      Partner with experienced developers and technology professionals who help you deliver projects faster, improve productivity, and achieve your business objectives with confidence.
-    </p>
-
+    <h4>{startup.card?.heading}</h4>
+    <p>{startup.card?.desc}</p>
     <div className="rocket-stats">
-      {[
-        { value: "500+", label: "Developers Available" },
-        { value: "200+", label: "Projects Delivered" },
-        { value: "98%", label: "Client Satisfaction" }
-      ].map(s => (
+      {(startup.card?.stats ?? []).map(s => (
         <div key={s.label} className="rs">
           <strong>{s.value}</strong>
           <span>{s.label}</span>
@@ -621,27 +563,6 @@ const why = siteData?.home?.why ?? {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
-      {/* <section className="testimonials"> */}
-        {/* <div className="sec-head">
-          <span className="sec-label">Testimonials</span>
-          <h2 className="sec-title">What Our Clients Say</h2>
-          <p className="sec-sub">Trusted by businesses worldwide.</p>
-        </div>
-        <div className="testi-grid">
-          {testimonials.map(({ initials, name, role, color, quote }) => (
-            <div key={name} className="testi-card">
-              <div className="testi-stars">★★★★★</div>
-              <p className="testi-quote">{quote}</p>
-              <div className="testi-author">
-                <div className="testi-avatar" style={{ background: color }}>{initials}</div>
-                <div><h4>{name}</h4><span>{role}</span></div>
-              </div>
-            </div>
-          ))}
-        </div> */}
-        
-      {/* </section> */}
       <section
   style={{
     padding: "80px 20px",
@@ -699,243 +620,80 @@ const why = siteData?.home?.why ?? {
       margin: "0 auto"
     }}
   >
-    {/* Card 1 */}
-    <div
-      style={{
-        background: "#fff",
-        padding: "30px",
-        borderRadius: "16px",
-        boxShadow: "0 10px 25px rgba(0,0,0,0.08)"
-      }}
-    >
+    {testimonials.map(({ initials, name, role, color, quote }, i) => (
       <div
+        key={i}
         style={{
-          color: "#fbbf24",
-          fontSize: "20px",
-          marginBottom: "15px"
-        }}
-      >
-        ★★★★★
-      </div>
-
-      <p
-        style={{
-          color: "#475569",
-          lineHeight: "1.8",
-          marginBottom: "25px"
-        }}
-      >
-        Hourly Recruiters helped us find highly skilled developers within
-        days. Their hiring process was smooth, professional, and efficient.
-      </p>
-
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "12px"
+          background: "#fff",
+          padding: "30px",
+          borderRadius: "16px",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.08)"
         }}
       >
         <div
           style={{
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            background: "#2563eb",
-            color: "#fff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontWeight: "700"
+            color: "#fbbf24",
+            fontSize: "20px",
+            marginBottom: "15px"
           }}
         >
-          JS
+          ★★★★★
         </div>
 
-        <div>
-          <h4 style={{ margin: 0 }}>John Smith</h4>
-          <span style={{ color: "#64748b" }}>
-            CEO, TechNova Solutions
-          </span>
-        </div>
-      </div>
-    </div>
+        <p
+          style={{
+            color: "#475569",
+            lineHeight: "1.8",
+            marginBottom: "25px"
+          }}
+        >
+          {quote}
+        </p>
 
-    {/* Card 2 */}
-    <div
-      style={{
-        background: "#fff",
-        padding: "30px",
-        borderRadius: "16px",
-        boxShadow: "0 10px 25px rgba(0,0,0,0.08)"
-      }}
-    >
-      <div
-        style={{
-          color: "#fbbf24",
-          fontSize: "20px",
-          marginBottom: "15px"
-        }}
-      >
-        ★★★★★
-      </div>
-
-      <p
-        style={{
-          color: "#475569",
-          lineHeight: "1.8",
-          marginBottom: "25px"
-        }}
-      >
-        The quality of talent provided exceeded our expectations. We
-        successfully scaled our team and delivered projects on time.
-      </p>
-
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "12px"
-        }}
-      >
         <div
           style={{
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            background: "#16a34a",
-            color: "#fff",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            fontWeight: "700"
+            gap: "12px"
           }}
         >
-          MR
-        </div>
+          <div
+            style={{
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+              background: color || "#2563eb",
+              color: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: "700",
+              flexShrink: 0
+            }}
+          >
+            {initials}
+          </div>
 
-        <div>
-          <h4 style={{ margin: 0 }}>Michael Roberts</h4>
-          <span style={{ color: "#64748b" }}>
-            Founder, StartupHub
-          </span>
-        </div>
-      </div>
-    </div>
-
-    {/* Card 3 */}
-    <div
-      style={{
-        background: "#fff",
-        padding: "30px",
-        borderRadius: "16px",
-        boxShadow: "0 10px 25px rgba(0,0,0,0.08)"
-      }}
-    >
-      <div
-        style={{
-          color: "#fbbf24",
-          fontSize: "20px",
-          marginBottom: "15px"
-        }}
-      >
-        ★★★★★
-      </div>
-
-      <p
-        style={{
-          color: "#475569",
-          lineHeight: "1.8",
-          marginBottom: "25px"
-        }}
-      >
-        Professional, reliable, and highly responsive. The developers
-        integrated seamlessly into our team and added immediate value.
-      </p>
-
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "12px"
-        }}
-      >
-        <div
-          style={{
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            background: "#f97316",
-            color: "#fff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontWeight: "700"
-          }}
-        >
-          AK
-        </div>
-
-        <div>
-          <h4 style={{ margin: 0 }}>Amit Kumar</h4>
-          <span style={{ color: "#64748b" }}>
-            Project Manager, DigitalEdge
-          </span>
+          <div>
+            <h4 style={{ margin: 0 }}>{name}</h4>
+            <span style={{ color: "#64748b" }}>{role}</span>
+          </div>
         </div>
       </div>
-    </div>
+    ))}
   </div>
 </section>
 
-      {/* ── CTA ── */}
-      {/* <section className="cta">
-        <div className="cta-inner">
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <span className="sec-label" style={{ color: "#38bdf8" }}>{cta.label}</span>
-            <h2>{cta.heading}</h2>
-            <p>{cta.sub}</p>
-          </div>
-          <div className="cta-btns" style={{ position: "relative", zIndex: 1 }}> */}
-            {/* <button className="btn-white" onClick={() => navigate("hire")}>Hire Developers Today</button> */}
-            {/* <button className="btn-outline-white" onClick={() => navigate("contact")}>Book Free Consultation</button>
-          </div>
-        </div>
-      </section> */}
       <section className="cta">
   <div className="cta-inner">
     <div style={{ position: "relative", zIndex: 1 }}>
-      <span
-        className="sec-label"
-        style={{ color: "#38bdf8" }}
-      >
-        Get Started Today
+      <span className="sec-label" style={{ color: "#38bdf8" }}>
+        {cta.label}
       </span>
-
-      <h2>
-        Ready to Hire Top Talent for Your Next Project?
-      </h2>
-
-      <p>
-        Connect with experienced developers, designers, and technology
-        professionals who can help accelerate your business growth.
-        Whether you need a single developer or an entire dedicated team,
-        Hourly Recruiters provides flexible hiring solutions tailored to
-        your needs. Start building smarter, faster, and more efficiently
-        with the right talent by your side.
-      </p>
+      <h2>{cta.heading}</h2>
+      <p>{cta.sub}</p>
     </div>
-
-    <div
-      className="cta-btns"
-      style={{ position: "relative", zIndex: 1 }}
-    >
-      {/* <button
-        className="btn-white"
-        onClick={() => navigate("hire")}
-      >
-        Hire Developers Today
-      </button> */}
-
+    <div className="cta-btns" style={{ position: "relative", zIndex: 1 }}>
       <button
         className="btn-outline-white"
         onClick={() => navigate("contact")}

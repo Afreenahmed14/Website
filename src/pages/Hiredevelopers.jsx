@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "../styles/HireDevelopers.css";
 const ALL_FILTERS = ["All", "Frontend", "Backend", "Full Stack", "Mobile", "DevOps", "Design"];
 
 export default function HireDevelopers({ navigate, siteData }) {

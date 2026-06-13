@@ -41,11 +41,11 @@ export default function About({ navigate, siteData }) {
     <>
       {/* ── HERO ── */}
       <section className="about-hero">
-        <div style={{ position:"relative", zIndex:1 }}>
+        <div className="about-hero-inner">
           <span className="sec-label sec-label-light">About Us</span>
           <h1>{hero.heading || "Helping Businesses Build Faster with Reliable Developers"}</h1>
           <p>{hero.subtext || "HourlyRecruit connects startups, agencies, and enterprises with skilled developers on flexible hourly engagement models. No long-term commitments, no risk."}</p>
-          <div style={{ display:"flex", gap:14, justifyContent:"center", flexWrap:"wrap", marginTop:28 }}>
+          <div className="about-hero-btns">
             <button className="btn-white" onClick={() => navigate("hire")}>Hire Developers</button>
             <button className="btn-outline-white" onClick={() => navigate("contact")}>Book Free Consultation</button>
           </div>
@@ -78,7 +78,7 @@ export default function About({ navigate, siteData }) {
                 </>
               )
             }
-            <div style={{ marginTop:28 }}>
+            <div className="about-text-cta">
               <button className="btn-primary" onClick={() => navigate("hire")}>Explore Developers</button>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function About({ navigate, siteData }) {
 
       {/* ── WHY US ── */}
       <section className="why">
-        <div style={{ position:"relative", zIndex:1 }}>
+        <div className="why-inner">
           <span className="sec-label sec-label-light">Why Choose HourlyRecruit</span>
           <h2 className="sec-title sec-title-light">Build Faster. Smarter. Better.</h2>
           <div className="why-grid">
@@ -169,12 +169,12 @@ export default function About({ navigate, siteData }) {
       {/* ── CTA ── */}
       <section className="cta">
         <div className="cta-inner">
-          <div style={{ position:"relative", zIndex:1 }}>
-            <span className="sec-label" style={{ color:"#38bdf8" }}>Get Started Today</span>
+          <div className="cta-content">
+            <span className="sec-label cta-label">Get Started Today</span>
             <h2>Ready to Build Your<br />Dream Team?</h2>
             <p>Hire skilled developers on hourly basis and bring your ideas to life. No long-term contracts, no risk.</p>
           </div>
-          <div className="cta-btns" style={{ position:"relative", zIndex:1 }}>
+          <div className="cta-btns">
             <button className="btn-white" onClick={() => navigate("hire")}>Hire Developers Today</button>
             <button className="btn-outline-white" onClick={() => navigate("contact")}>Book Free Consultation</button>
           </div>

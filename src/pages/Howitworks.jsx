@@ -5,13 +5,18 @@ export default function HowItWorks({ navigate, siteData }) {
   const [openFaq, setOpenFaq] = useState(null);
   const hw    = siteData?.howItWorks ?? {};
   const hero  = hw.hero  ?? { heading: "From Brief to Build in 4 Simple Steps", subtext: "" };
-  const steps = hw.steps ?? [];
+  const steps = (hw.steps && hw.steps.length > 0) ? hw.steps : [
+    { n: 1, title: "Share Your Requirements", desc: "Tell us about your project, tech stack, team size, and timeline. Our intake form takes less than 5 minutes to complete." },
+    { n: 2, title: "Get Matched in 24 Hours", desc: "We handpick developers from our pre-vetted talent pool who match your exact requirements — skills, timezone, and availability." },
+    { n: 3, title: "Interview & Select", desc: "Meet your matched candidates via a live technical interview. You stay in full control — hire only who you're confident in." },
+    { n: 4, title: "Onboard & Start Building", desc: "Once you've chosen your developer, they're ready to join your team within 48 hours. No long procurement cycles." },
+  ];
   const faqs  = hw.faqs  ?? [];
 
   return (
     <>
       <section className="how-hero">
-        <div style={{ position:"relative", zIndex:1 }}>
+        <div className="how-hero-inner">
           <span className="sec-label sec-label-light"> Hiring Process</span>
           <h1>{hero.heading}</h1>
           <p>{hero.subtext}</p>
@@ -19,40 +24,41 @@ export default function HowItWorks({ navigate, siteData }) {
       </section>
 
       <section className="how-page">
-        <div
-          style={{ maxWidth:"900px", margin:"60px auto", padding:"20px" }}
-        >
-          <div style={{ textAlign:"center", marginBottom:"60px" }}>
-            <span style={{ color:"#2563eb", fontSize:"14px", fontWeight:"600", textTransform:"uppercase", letterSpacing:"1px" }}>
+        <div className="how-page-container">
+          <div className="how-page-head">
+            <span className="how-page-eyebrow">
               {hero.heading}
             </span>
-            <h2 style={{ fontSize:"42px", fontWeight:"800", color:"#0f172a", margin:"12px 0" }}>
+            <h2 className="how-page-title">
               Hire Top Developers in 48 Hours
             </h2>
-            <p style={{ color:"#64748b", lineHeight:"1.8", maxWidth:"700px", margin:"0 auto" }}>
+            <p className="how-page-sub">
               {hero.subtext}
             </p>
           </div>
 
-          <div style={{ position:"relative" }}>
+          <div className="how-timeline">
             {/* Vertical Line */}
-            <div style={{ position:"absolute", left:"30px", top:"0", bottom:"0", width:"3px", background:"linear-gradient(#2563eb,#60a5fa)" }} />
+            <div className="how-timeline-line" />
 
             {steps.map((item, index) => (
-              <div
-                key={index}
-                style={{ display:"flex", gap:"30px", marginBottom:"40px", position:"relative", alignItems:"flex-start" }}
-              >
-                <div style={{ minWidth:"60px", width:"60px", height:"60px", borderRadius:"50%", background:"linear-gradient(135deg,#2563eb,#3b82f6)", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"22px", fontWeight:"800", zIndex:2, boxShadow:"0 10px 25px rgba(37,99,235,0.25)" }}>
+              <div key={index} className="how-timeline-row">
+                <div className="how-timeline-num">
                   {item.n || index + 1}
                 </div>
                 <div
-                  style={{ flex:1, background:"#ffffff", border:"1px solid #e2e8f0", borderRadius:"18px", padding:"24px", boxShadow:"0 4px 20px rgba(0,0,0,0.05)", transition:"all 0.3s ease" }}
-                  onMouseEnter={(e) => { e.currentTarget.style.transform="translateX(10px)"; e.currentTarget.style.boxShadow="0 15px 35px rgba(37,99,235,0.12)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.transform="translateX(0)"; e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,0.05)"; }}
+                  className="how-timeline-card"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateX(10px)";
+                    e.currentTarget.style.boxShadow = "0 15px 35px rgba(37,99,235,0.12)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateX(0)";
+                    e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.05)";
+                  }}
                 >
-                  <h3 style={{ margin:"0 0 10px", color:"#0f172a", fontSize:"22px", fontWeight:"700" }}>{item.title}</h3>
-                  <p style={{ margin:0, color:"#64748b", lineHeight:"1.8" }}>{item.desc}</p>
+                  <h3 className="how-timeline-card-title">{item.title}</h3>
+                  <p className="how-timeline-card-desc">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -61,8 +67,8 @@ export default function HowItWorks({ navigate, siteData }) {
       </section>
 
       {/* Engagement Models */}
-      <section style={{ padding:"80px 5%", background:"var(--off)" }}>
-        <div className="sec-head" style={{ marginBottom:48 }}>
+      <section className="engage-section">
+        <div className="sec-head engage-head">
           <span className="sec-label">Engagement Models</span>
           <h2 className="sec-title">Choose How You Work With Us</h2>
         </div>
@@ -95,7 +101,7 @@ export default function HowItWorks({ navigate, siteData }) {
       {/* FAQ */}
       {faqs.length > 0 && (
         <section className="faq">
-          <div className="sec-head" style={{ marginBottom:0 }}>
+          <div className="sec-head">
             <span className="sec-label">FAQ</span>
             <h2 className="sec-title">Frequently Asked Questions</h2>
             <p className="sec-sub">Everything you need to know about working with HourlyRecruit.</p>
@@ -117,24 +123,24 @@ export default function HowItWorks({ navigate, siteData }) {
       {/* CTA */}
       <section className="cta">
         <div className="cta-inner">
-          <div style={{ position:"relative", zIndex:1 }}>
-            <span className="sec-label" style={{ color:"#38bdf8" }}>Ready?</span>
+          <div className="cta-content">
+            <span className="sec-label cta-label">Ready?</span>
             <h2>Start Your Project<br />in 48 Hours</h2>
             <p>Share your requirements today. We'll have matched candidates in your inbox by tomorrow.</p>
           </div>
-          <div className="cta-btns" style={{ position:"relative", zIndex:1 }}>
-      <button
-  className="btn-white"
-  onClick={() =>
-    window.open(
-      "https://docs.google.com/forms/d/e/1FAIpQLSdJleRoQ4AtK_GARvDOV39sfBGv9Zk2VDYqiKF8TgwVMBIeTg/viewform?usp=publish-editor",
-      "_blank"
-    )
-  }
->
-  Get Started
-</button>
-       {/* <button className="btn-white"        onClick={() => navigate("contact")}>Get Started</button> */}
+          <div className="cta-btns">
+            <button
+              className="btn-white"
+              onClick={() =>
+                window.open(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSdJleRoQ4AtK_GARvDOV39sfBGv9Zk2VDYqiKF8TgwVMBIeTg/viewform?usp=publish-editor",
+                  "_blank"
+                )
+              }
+            >
+              Get Started
+            </button>
+            {/* <button className="btn-white" onClick={() => navigate("contact")}>Get Started</button> */}
             <button className="btn-outline-white" onClick={() => navigate("contact")}>Book Free Consultation</button>
           </div>
         </div>

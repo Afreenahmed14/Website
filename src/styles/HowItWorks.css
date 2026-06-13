@@ -13,6 +13,11 @@
   overflow: hidden;
 }
 
+.how-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
 .how-hero h1 {
   font-family: var(--font-head);
   font-size: 46px;
@@ -38,6 +43,106 @@
   background: white;
 }
 
+.how-page-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.how-page-head {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.how-page-eyebrow {
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.how-page-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 12px 0;
+}
+
+.how-page-sub {
+  color: #64748b;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────────
+   TIMELINE (Steps)
+───────────────────────────────────────────── */
+.how-timeline {
+  position: relative;
+}
+
+.how-timeline-line {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(#2563eb, #60a5fa);
+}
+
+.how-timeline-row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  position: relative;
+  align-items: flex-start;
+}
+
+.how-timeline-num {
+  min-width: 60px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  z-index: 2;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+  flex-shrink: 0;
+}
+
+.how-timeline-card {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.how-timeline-card-title {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.how-timeline-card-desc {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.8;
+}
+
+/* ─────────────────────────────────────────────
+   HOW STEPS FULL (alternate layout classes kept)
+───────────────────────────────────────────── */
 .how-steps-full {
   display: grid;
   grid-template-columns: 1fr;
@@ -113,9 +218,13 @@
 /* ─────────────────────────────────────────────
    ENGAGEMENT MODELS
 ───────────────────────────────────────────── */
-.engage {
-  padding: 72px 5%;
+.engage-section {
+  padding: 80px 5%;
   background: var(--off);
+}
+
+.engage-head {
+  margin-bottom: 48px;
 }
 
 .engage-grid {
@@ -357,6 +466,15 @@
   pointer-events: none;
 }
 
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-label {
+  color: #38bdf8;
+}
+
 .cta-inner h2 {
   font-family: var(--font-head);
   font-size: 32px;
@@ -377,10 +495,45 @@
   flex-direction: column;
   gap: 11px;
   min-width: 210px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ─────────────────────────────────────────────
-   RESPONSIVE
+   HERO BUTTON GROUP
+───────────────────────────────────────────── */
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLL / OVERFLOW FIX
+───────────────────────────────────────────── */
+.how-hero,
+.how-page,
+.engage-section,
+.faq,
+.cta {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.eng-card,
+.how-step-row,
+.faq-item,
+.how-timeline-card {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — TABLET (≤ 1100px)
 ───────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .how-hero h1 {
@@ -393,10 +546,20 @@
 
   .cta-inner {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
+    padding: 48px 40px;
+  }
+
+  .cta-btns {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 0;
   }
 }
 
+/* ─────────────────────────────────────────────
+   RESPONSIVE — MOBILE (≤ 768px)
+───────────────────────────────────────────── */
 @media (max-width: 768px) {
   .how-hero h1 {
     font-size: 36px;
@@ -404,6 +567,10 @@
 
   .how-page {
     padding: 52px 5%;
+  }
+
+  .how-page-title {
+    font-size: 28px;
   }
 
   .how-step-row {
@@ -426,7 +593,35 @@
   }
 
   .cta-inner {
-    padding: 32px 16px;
+    padding: 36px 20px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* CTA buttons: full-width stacked */
+  .cta-btns {
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cta-btns > * {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  /* Hero buttons: full-width stacked */
+  .hero-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-btns > * {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box;
   }
 
   .faq {
@@ -435,23 +630,39 @@
 }
 
 /* ─────────────────────────────────────────────
-   SCROLL / OVERFLOW FIX
+   RESPONSIVE — SMALL PHONES (≤ 480px)
 ───────────────────────────────────────────── */
-.how-hero,
-.how-page,
-.engage,
-.faq,
-.cta {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
+@media (max-width: 480px) {
+  .cta-inner {
+    padding: 28px 14px;
+    border-radius: 16px;
+  }
 
-.eng-card,
-.how-step-row,
-.faq-item {
-  box-sizing: border-box;
-  max-width: 100%;
-  min-width: 0;
+  .cta-inner h2 {
+    font-size: 22px;
+  }
+
+  .cta-inner p {
+    font-size: 14px;
+  }
+
+  .how-page-container {
+    margin: 20px auto;
+    padding: 10px;
+  }
+
+  .how-timeline-line {
+    left: 20px;
+  }
+
+  .how-timeline-num {
+    min-width: 44px;
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .how-timeline-row {
+    gap: 16px;
+  }
 }

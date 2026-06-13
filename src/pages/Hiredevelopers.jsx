@@ -15,16 +15,16 @@ export default function HireDevelopers({ navigate, siteData }) {
   return (
     <>
       <section className="hire-hero">
-        <div style={{ position:"relative", zIndex:1 }}>
-          <div className="badge-tag badge-tag-dark" style={{ margin:"0 auto 18px" }}>
+        <div className="hire-hero-inner">
+          <div className="badge-tag badge-tag-dark badge-tag-center">
             <span className="badge-dot" />
             Pre-vetted & Ready to Start
           </div>
           <h1>Hire World-Class Developers</h1>
           <p>Browse our network of {developers.length}+ pre-screened developers and hire the perfect match for your project in hours, not weeks.</p>
-          <div style={{ display:"flex", gap:14, justifyContent:"center", flexWrap:"wrap" }}>
-            <button className="btn-white"         onClick={() => navigate("contact")}>Book Free Consultation</button>
-            <button className="btn-outline-white"  onClick={() => navigate("how")}>How It Works</button>
+          <div className="hero-btns">
+            <button className="btn-white"        onClick={() => navigate("contact")}>Book Free Consultation</button>
+            <button className="btn-outline-white" onClick={() => navigate("how")}>How It Works</button>
           </div>
         </div>
       </section>
@@ -41,7 +41,7 @@ export default function HireDevelopers({ navigate, siteData }) {
 
       {/* Developer Cards */}
       <section className="hire-grid">
-        <div className="sec-head" style={{ marginBottom:36 }}>
+        <div className="sec-head hire-grid-head">
           <span className="sec-label">Available Developers</span>
           <h2 className="sec-title">Choose Your Perfect Match</h2>
           <p className="sec-sub">{filtered.length} developers available · Hire in 48 hours or less</p>
@@ -69,9 +69,9 @@ export default function HireDevelopers({ navigate, siteData }) {
                 <div className="ds"><strong>{dev.projects}</strong><span>Projects</span></div>
               </div>
               <p className="dev-rate">Starting at <strong>{dev.rate}</strong></p>
-              <div style={{ display:"flex", gap:10 }}>
-                <button className="btn-primary"   style={{ flex:1, justifyContent:"center", fontSize:13, padding:"10px 16px" }} onClick={() => navigate("contact")}>Hire Now</button>
-                <button className="btn-secondary" style={{ flex:1, justifyContent:"center", fontSize:13, padding:"10px 16px" }} onClick={() => navigate("contact")}>View Profile</button>
+              <div className="dev-actions">
+                <button className="btn-primary dev-btn"   onClick={() => navigate("contact")}>Hire Now</button>
+                <button className="btn-secondary dev-btn" onClick={() => navigate("contact")}>View Profile</button>
               </div>
             </div>
           ))}
@@ -88,17 +88,17 @@ export default function HireDevelopers({ navigate, siteData }) {
           </div>
           <div className="pricing-grid">
             {pricing.map((p) => (
-              <div key={p.name} className={`price-card${p.popular ? " popular" : ""}`} style={p.popular ? { marginTop:12 } : {}}>
+              <div key={p.name} className={`price-card${p.popular ? " popular" : ""}`}>
                 {p.popular && <div className="popular-badge">Most Popular</div>}
                 <div className="price-name">{p.name}</div>
-                <div className="price-amt">{p.amount}<span style={{ fontSize:18 }}>{p.period}</span></div>
+                <div className="price-amt">{p.amount}<span className="price-period-inline">{p.period}</span></div>
                 <div className="price-period">{p.subtext}</div>
                 <div className="price-features">
                   {(p.features ?? []).map(f => <div key={f} className="price-feat">{f}</div>)}
                 </div>
                 {p.popular
-                  ? <button className="btn-white"    style={{ width:"100%", justifyContent:"center" }} onClick={() => navigate("contact")}>Hire Now</button>
-                  : <button className="btn-secondary" style={{ width:"100%", justifyContent:"center" }} onClick={() => navigate("contact")}>{p.amount === "Custom" ? "Request a Quote" : "Get Started"}</button>
+                  ? <button className="btn-white price-btn"    onClick={() => navigate("contact")}>Hire Now</button>
+                  : <button className="btn-secondary price-btn" onClick={() => navigate("contact")}>{p.amount === "Custom" ? "Request a Quote" : "Get Started"}</button>
                 }
               </div>
             ))}
@@ -109,12 +109,12 @@ export default function HireDevelopers({ navigate, siteData }) {
       {/* CTA */}
       <section className="cta">
         <div className="cta-inner">
-          <div style={{ position:"relative", zIndex:1 }}>
-            <span className="sec-label" style={{ color:"#38bdf8" }}>Start Today</span>
+          <div className="cta-content">
+            <span className="sec-label cta-label">Start Today</span>
             <h2>Your Next Developer is<br />48 Hours Away</h2>
             <p>Tell us what you need. We'll match you with the perfect developer and have them ready to start within 48 hours.</p>
           </div>
-          <div className="cta-btns" style={{ position:"relative", zIndex:1 }}>
+          <div className="cta-btns">
             <button className="btn-white"         onClick={() => navigate("contact")}>Start Hiring</button>
             <button className="btn-outline-white"  onClick={() => navigate("contact")}>Book Free Consultation</button>
           </div>

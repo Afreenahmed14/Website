@@ -13,6 +13,11 @@
   overflow: hidden;
 }
 
+.hire-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
 .hire-hero h1 {
   font-family: var(--font-head);
   font-size: 46px;
@@ -28,6 +33,11 @@
   max-width: 620px;
   margin: 0 auto;
   line-height: 1.75;
+}
+
+/* badge centered in hero */
+.badge-tag-center {
+  margin: 0 auto 18px;
 }
 
 /* ─────────────────────────────────────────────
@@ -80,6 +90,10 @@
 .hire-grid {
   padding: 52px 5%;
   background: var(--off);
+}
+
+.hire-grid-head {
+  margin-bottom: 36px;
 }
 
 .dev-cards {
@@ -213,6 +227,19 @@
   font-weight: 700;
 }
 
+/* Developer card action buttons */
+.dev-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.dev-btn {
+  flex: 1;
+  justify-content: center;
+  font-size: 13px;
+  padding: 10px 16px;
+}
+
 /* ─────────────────────────────────────────────
    PRICING SECTION
 ───────────────────────────────────────────── */
@@ -244,6 +271,7 @@
 .price-card.popular {
   background: var(--navy);
   border-color: var(--navy);
+  margin-top: 12px;
 }
 
 .popular-badge {
@@ -288,6 +316,11 @@
   color: var(--accent);
 }
 
+/* replaces the inline fontSize:18 on the period span */
+.price-period-inline {
+  font-size: 18px;
+}
+
 .price-period {
   font-size: 13px;
   color: var(--gray-400);
@@ -324,6 +357,12 @@
   color: var(--accent);
 }
 
+/* Pricing card button — full width */
+.price-btn {
+  width: 100%;
+  justify-content: center;
+}
+
 /* ─────────────────────────────────────────────
    CTA SECTION
 ───────────────────────────────────────────── */
@@ -355,6 +394,12 @@
   pointer-events: none;
 }
 
+/* wraps the text content so z-index works without inline style */
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
 .cta-inner h2 {
   font-family: var(--font-head);
   font-size: 32px;
@@ -370,11 +415,18 @@
   line-height: 1.75;
 }
 
+/* replaces inline color:#38bdf8 on cta sec-label */
+.cta-label {
+  color: #38bdf8;
+}
+
 .cta-btns {
   display: flex;
   flex-direction: column;
   gap: 11px;
   min-width: 210px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ─────────────────────────────────────────────
@@ -395,7 +447,14 @@
 
   .cta-inner {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
+    padding: 48px 40px;
+  }
+
+  .cta-btns {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 0;
   }
 }
 
@@ -414,6 +473,63 @@
 
   .cta-inner {
     padding: 32px 16px;
+  }
+
+  /* CTA buttons: full-width stacked */
+  .cta-btns {
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cta-btns > * {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  /* Hero buttons: full-width stacked */
+  .hero-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-btns > * {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box;
+  }
+
+  /* Dev card action buttons: full-width stacked */
+  .dev-actions {
+    flex-direction: column;
+  }
+
+  .dev-btn {
+    width: 100%;
+  }
+
+  /* Pricing buttons: ensure full width on mobile */
+  .price-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-inner {
+    padding: 28px 14px;
+    border-radius: 16px;
+  }
+
+  .cta-inner h2 {
+    font-size: 22px;
+  }
+
+  .cta-inner p {
+    font-size: 14px;
   }
 }
 
@@ -436,4 +552,16 @@
   box-sizing: border-box;
   max-width: 100%;
   min-width: 0;
+}
+
+/* ─────────────────────────────────────────────
+   HERO BUTTONS
+───────────────────────────────────────────── */
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
 }

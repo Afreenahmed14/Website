@@ -1,11 +1,9 @@
 /* ─────────────────────────────────────────────
    index.css  — root tokens & base typography
-   (works alongside App.css)
 ───────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
 
 :root {
-  /* ── Semantic colour tokens ── */
   --text:    #6b6375;
   --text-h:  #08060d;
   --bg:      #fff;
@@ -19,14 +17,12 @@
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  /* ── NEW font stack (matches App.css) ── */
   --sans:    'Plus Jakarta Sans', system-ui, sans-serif;
   --heading: 'Bricolage Grotesque', system-ui, sans-serif;
   --mono:    ui-monospace, Consolas, monospace;
 
-  /* ── Base typography ── */
-  font: 17px/1.65 var(--sans);   /* was 18px; slightly tighter */
-  letter-spacing: 0.01em;        /* was 0.18px; more refined */
+  font: 17px/1.65 var(--sans);
+  letter-spacing: 0.01em;
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
@@ -34,13 +30,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 15.5px;            /* was 16px */
-  }
 }
 
-/* ── Dark mode overrides ── */
+@media (max-width: 1024px) {
+  :root { font-size: 15.5px; }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --text:    #9ca3af;
@@ -56,19 +51,14 @@
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
       rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
   }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+  #social .button-icon { filter: invert(1) brightness(2); }
 }
 
-/* ── Layout shell ── */
-body {
-  margin: 0;
-}
+body { margin: 0; }
 
+/* ── FIX: Remove fixed 1126px width — it clips buttons on mobile ── */
 #root {
-  width: 1126px;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -79,43 +69,38 @@ body {
   box-sizing: border-box;
 }
 
-/* ── Headings — align + font ── */
-h1,
-h2 {
+h1, h2 {
   font-family: var(--heading);
-  font-weight: 700;              /* was 500; headings need more weight */
+  font-weight: 700;
   color: var(--text-h);
   line-height: 1.1;
-  letter-spacing: -.02em;       /* tighter for display headings */
+  letter-spacing: -.02em;
 }
 
 h1 {
-  font-size: 52px;               /* was 56px; fits viewport better */
-  margin: 28px 0;                /* was 32px */
-  @media (max-width: 1024px) {
-    font-size: 34px;             /* was 36px */
-    margin: 18px 0;              /* was 20px */
-  }
+  font-size: 52px;
+  margin: 28px 0;
+}
+@media (max-width: 1024px) {
+  h1 { font-size: 34px; margin: 18px 0; }
 }
 
 h2 {
-  font-size: 22px;               /* was 24px */
+  font-size: 22px;
   line-height: 118%;
   letter-spacing: -.02em;
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 18px;             /* was 20px */
-  }
+}
+@media (max-width: 1024px) {
+  h2 { font-size: 18px; }
 }
 
 p {
   margin: 0;
-  line-height: 1.7;              /* explicit line-height for body copy */
+  line-height: 1.7;
 }
 
-/* ── Inline code ── */
-code,
-.counter {
+code, .counter {
   font-family: var(--mono);
   display: inline-flex;
   border-radius: 4px;
@@ -123,8 +108,8 @@ code,
 }
 
 code {
-  font-size: 14px;               /* was 15px */
+  font-size: 14px;
   line-height: 135%;
-  padding: 3px 7px;              /* was 4px 8px */
+  padding: 3px 7px;
   background: var(--code-bg);
 }

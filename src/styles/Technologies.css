@@ -13,6 +13,11 @@
   overflow: hidden;
 }
 
+.tech-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
 .tech-hero h1 {
   font-family: var(--font-head);
   font-size: 46px;
@@ -38,6 +43,72 @@
   background: white;
 }
 
+.tech-page-head {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+
+.tech-page-eyebrow {
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tech-page-title {
+  margin: 12px 0;
+  font-size: 42px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.tech-page-sub {
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* ─────────────────────────────────────────────
+   MARQUEE ROWS
+───────────────────────────────────────────── */
+.tech-marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.tech-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  margin-right: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tech-marquee-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.tech-marquee-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* ─────────────────────────────────────────────
+   TECH SECTION (kept for commented stacks block)
+───────────────────────────────────────────── */
 .tech-section {
   margin-bottom: 50px;
 }
@@ -88,6 +159,9 @@
   border-radius: var(--radius-lg);
   padding: 20px;
   transition: all var(--transition);
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .tech-card:hover {
@@ -149,6 +223,15 @@
   pointer-events: none;
 }
 
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-label {
+  color: #38bdf8;
+}
+
 .cta-inner h2 {
   font-family: var(--font-head);
   font-size: 32px;
@@ -168,43 +251,9 @@
   display: flex;
   flex-direction: column;
   gap: 11px;
-  min-width: 210px;
-}
-
-/* ─────────────────────────────────────────────
-   RESPONSIVE
-───────────────────────────────────────────── */
-@media (max-width: 1100px) {
-  .tech-hero h1 {
-    font-size: 40px;
-  }
-
-  .tech-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cta-inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-
-@media (max-width: 768px) {
-  .tech-hero h1 {
-    font-size: 36px;
-  }
-
-  .tech-page {
-    padding: 52px 5%;
-  }
-
-  .tech-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cta-inner {
-    padding: 32px 16px;
-  }
+  min-width: 0;
+  position: relative;
+  z-index: 1;
 }
 
 /* ─────────────────────────────────────────────
@@ -219,8 +268,92 @@
   overflow-x: hidden;
 }
 
-.tech-card {
-  box-sizing: border-box;
-  max-width: 100%;
-  min-width: 0;
+/* ─────────────────────────────────────────────
+   RESPONSIVE — TABLET (≤ 1100px)
+───────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .tech-hero h1 {
+    font-size: 40px;
+  }
+
+  .tech-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 48px 40px;
+  }
+
+  .cta-btns {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — MOBILE (≤ 768px)
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .tech-hero h1 {
+    font-size: 36px;
+  }
+
+  .tech-page {
+    padding: 52px 5%;
+  }
+
+  .tech-page-title {
+    font-size: 28px;
+  }
+
+  .tech-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-inner {
+    padding: 36px 20px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .cta-btns {
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cta-btns > * {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — SMALL PHONES (≤ 480px)
+───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .tech-hero h1 {
+    font-size: 28px;
+  }
+
+  .tech-page-title {
+    font-size: 22px;
+  }
+
+  .cta-inner {
+    padding: 28px 14px;
+    border-radius: 16px;
+  }
+
+  .cta-inner h2 {
+    font-size: 22px;
+  }
+
+  .cta-inner p {
+    font-size: 14px;
+  }
 }

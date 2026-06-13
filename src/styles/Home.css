@@ -106,6 +106,7 @@
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .hero-visual {
@@ -275,45 +276,91 @@
    TRUST BAR
 ───────────────────────────────────────────── */
 .trust {
-  padding: 24px 5%;
+  padding: 28px 5%;
+  border-top: 1px solid var(--gray-100);
   border-bottom: 1px solid var(--gray-100);
   background: var(--white);
 }
 
+/* ← CHANGE 1: contained block with max-width, border, shadow */
 .trust-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 14px;
+  padding: 20px 32px;
   display: flex;
   align-items: center;
   gap: 40px;
   flex-wrap: wrap;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .trust-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--gray-400);
   white-space: nowrap;
+  flex-shrink: 0;
+  padding-right: 36px;
+  border-right: 2px solid var(--gray-100);
+  line-height: 1.5;
 }
 
 .trust-logos {
   display: flex;
-  gap: 36px;
   align-items: center;
   flex-wrap: wrap;
+  flex: 1;
+  justify-content: space-between;
+  gap: 4px;
 }
 
 .trust-logo {
-  font-family: var(--font-head);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--gray-200);
-  letter-spacing: -0.2px;
-  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  position: relative;
+  transition: transform 0.2s ease;
+  cursor: default;
+}
+
+.trust-logo::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18px;
+  width: 1px;
+  background: var(--gray-100);
+}
+
+.trust-logo:last-child::after {
+  display: none;
+}
+
+/* ← CHANGE 2: remove grayscale + restore full opacity so logos are dark/coloured */
+.trust-svg {
+  height: 26px;
+  width: auto;
+  display: block;
+  opacity: 1;
+  filter: none;
+  transition: opacity 0.25s ease;
 }
 
 .trust-logo:hover {
-  color: var(--gray-400);
+  transform: translateY(-2px);
+}
+
+/* hover state no longer needs to "reveal" colour — already visible */
+.trust-logo:hover .trust-svg {
+  opacity: 0.8;
 }
 
 /* ─────────────────────────────────────────────
@@ -338,7 +385,7 @@
   text-align: center;
   border-right: 1px solid var(--gray-100);
   transition: background var(--transition), transform var(--transition);
-  cursor: default;
+  cursor: pointer;
 }
 
 .offer-item:last-child {
@@ -566,6 +613,7 @@
   transition: color var(--transition), border-color var(--transition);
   cursor: pointer;
   letter-spacing: 0.01em;
+  min-height: 40px;
 }
 
 .tech-tab.active,
@@ -587,10 +635,10 @@
   padding: 11px 18px;
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--gray-800);
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
   transition: all var(--transition);
   cursor: default;
   letter-spacing: 0.01em;
@@ -602,6 +650,13 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.1);
   color: var(--blue);
+}
+
+.tech-logo-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .tech-dot {
@@ -654,14 +709,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1.7;
 }
 
 .ind-icon svg {
   width: 25px;
   height: 25px;
-  stroke: var(--blue);
-  fill: none;
-  stroke-width: 1.7;
 }
 
 .ind-card h3 {
@@ -758,6 +813,11 @@
   flex-shrink: 0;
 }
 
+.rocket-card-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .rocket-card {
   background: white;
   border-radius: 20px;
@@ -765,13 +825,6 @@
   box-shadow: var(--shadow-lg);
   text-align: center;
   width: 260px;
-  margin: auto;
-}
-
-.rocket-icon {
-  font-size: 54px;
-  margin-bottom: 14px;
-  display: block;
 }
 
 .rocket-card h4 {
@@ -781,11 +834,13 @@
   color: var(--navy);
   margin-bottom: 7px;
   letter-spacing: -0.2px;
+  margin-top: 0;
 }
 
 .rocket-card p {
   font-size: 13px;
   color: var(--gray-400);
+  margin-bottom: 18px;
 }
 
 .rocket-stats {
@@ -917,6 +972,11 @@
   pointer-events: none;
 }
 
+.why-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .why-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -965,107 +1025,113 @@
   color: white;
   margin-bottom: 6px;
   letter-spacing: -0.1px;
+  margin-top: 0;
 }
 
 .why-card p {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.48);
   line-height: 1.65;
+  margin: 0;
 }
 
 /* ─────────────────────────────────────────────
    TESTIMONIALS
 ───────────────────────────────────────────── */
-.testimonials {
-  padding: 72px 5%;
-  background: white;
+.testimonials-section {
+  padding: 80px 20px;
+  background: #f8fafc;
 }
 
-.testi-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-  margin-top: 44px;
+.testimonials-head {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
 }
 
-.testi-card {
-  background: var(--off);
-  border: 1px solid var(--gray-100);
-  border-radius: var(--radius-xl);
-  padding: 32px;
-  transition: box-shadow var(--transition);
+.testimonials-label {
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
 }
 
-.testi-card:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-.testi-stars {
-  color: var(--amber);
-  font-size: 15px;
-  margin-bottom: 14px;
-  letter-spacing: 2px;
-}
-
-.testi-quote {
-  font-size: 14.5px;
-  color: var(--gray-600);
-  line-height: 1.8;
-  margin-bottom: 24px;
-  font-style: italic;
-  position: relative;
-  padding-left: 18px;
-}
-
-.testi-quote::before {
-  content: '"';
-  position: absolute;
-  left: -4px;
-  top: -10px;
+.testimonials-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 15px 0;
+  color: #1e293b;
   font-family: var(--font-head);
-  font-size: 48px;
-  color: var(--blue);
-  font-style: normal;
-  font-weight: 800;
-  line-height: 1;
-  opacity: 0.35;
 }
 
-.testi-author {
+.testimonials-sub {
+  color: #64748b;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.testimonial-stars {
+  color: #fbbf24;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.testimonial-quote {
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+.testimonial-author {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 12px;
 }
 
-.testi-avatar {
-  width: 44px;
-  height: 44px;
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue), var(--accent));
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-head);
-  font-size: 12px;
-  font-weight: 800;
-  color: white;
-}
-
-.testi-author h4 {
-  font-family: var(--font-head);
-  font-size: 14px;
   font-weight: 700;
-  color: var(--navy);
-  letter-spacing: -0.1px;
+  flex-shrink: 0;
 }
 
-.testi-author span {
-  font-size: 12px;
-  color: var(--gray-400);
+.testimonial-author h4 {
+  margin: 0;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+
+.testimonial-author span {
+  color: #64748b;
+  font-size: 14px;
 }
 
 /* ─────────────────────────────────────────────
-   CTA BAND
+   CTA SECTION
 ───────────────────────────────────────────── */
 .cta {
   padding: 72px 5%;
@@ -1095,6 +1161,20 @@
   pointer-events: none;
 }
 
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-label {
+  color: #38bdf8;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+}
+
 .cta-inner h2 {
   font-family: var(--font-head);
   font-size: 32px;
@@ -1102,77 +1182,56 @@
   color: white;
   letter-spacing: -0.6px;
   margin-bottom: 10px;
+  margin-top: 15px;
 }
 
 .cta-inner p {
   font-size: 15px;
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.75;
+  margin: 0;
 }
 
 .cta-btns {
   display: flex;
   flex-direction: column;
   gap: 11px;
-  min-width: 210px;
+  min-width: 0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
 }
 
 /* ─────────────────────────────────────────────
    ANIMATIONS
 ───────────────────────────────────────────── */
 @keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.94);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes floatY {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
 }
 
 @keyframes flowLine {
-  0% {
-    background-position: 0%;
-  }
-  100% {
-    background-position: 200%;
-  }
+  0%   { background-position: 0%; }
+  100% { background-position: 200%; }
 }
 
 /* ─────────────────────────────────────────────
-   RESPONSIVE
+   RESPONSIVE - TABLET
 ───────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .hero {
@@ -1180,29 +1239,13 @@
     padding: 64px 5%;
   }
 
-  .hero h1 {
-    font-size: 40px;
-  }
+  .hero h1 { font-size: 40px; }
+  .hero-card { width: 300px; }
 
-  .hero-card {
-    width: 300px;
-  }
-
-  .offer-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .engage-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .why-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .ind-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .offer-grid   { grid-template-columns: repeat(3, 1fr); }
+  .engage-grid  { grid-template-columns: 1fr 1fr; }
+  .why-grid     { grid-template-columns: repeat(3, 1fr); }
+  .ind-grid     { grid-template-columns: repeat(2, 1fr); }
 
   .startup-inner {
     grid-template-columns: 1fr;
@@ -1212,82 +1255,123 @@
   .cta-inner {
     grid-template-columns: 1fr;
     gap: 32px;
+    padding: 48px 40px;
   }
 
-  .testi-grid {
-    grid-template-columns: 1fr;
+  .cta-btns {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
+
+  /* trust bar — stack label on top, keep contained block */
+  .trust-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+  }
+
+  .trust-label {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gray-100);
+    width: 100%;
+    text-align: center;
+  }
+
+  .trust-logos {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .trust-logo::after { display: none; }
+  .trust-logo { padding: 6px 14px; }
 }
 
+/* ─────────────────────────────────────────────
+   RESPONSIVE - MOBILE
+───────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 32px;
-  }
+  .hero h1 { font-size: 32px; }
 
-  .offer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .engage-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .why-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .ind-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .offer-grid   { grid-template-columns: repeat(2, 1fr); }
+  .engage-grid  { grid-template-columns: 1fr; }
+  .why-grid     { grid-template-columns: 1fr 1fr; }
+  .ind-grid     { grid-template-columns: repeat(2, 1fr); }
 
   .steps-grid {
     grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
+  .steps-grid::before { display: none; }
 
-  .steps-grid::before {
-    display: none;
-  }
+  .hero-card { width: 280px; }
 
-  .hero-card {
-    width: 280px;
-  }
+  .startup-inner { padding: 28px 16px; }
+  .cta-inner     { padding: 36px 20px; }
 
-  .startup-inner {
-    padding: 28px 16px;
-  }
+  .testimonials-section { padding: 60px 5%; }
+  .testimonials-title   { font-size: 32px; }
 
-  .cta-inner {
-    padding: 32px 16px;
-  }
+  .hero-btns { flex-direction: column; width: 100%; }
+  .hero-btns button { width: 100%; justify-content: center; }
+  .cta-btns  { flex-direction: column; width: 100%; }
+  .cta-btns button { width: 100%; justify-content: center; }
+
+  .trust-svg { height: 22px; }
+  .trust-inner { padding: 16px 20px; }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE - SMALL PHONES
+───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .hero { padding: 48px 4%; }
+  .hero h1 { font-size: 26px; letter-spacing: -0.8px; }
+  .hero-sub { font-size: 14px; }
+
+  .hero-btns { flex-direction: column; width: 100%; }
+  .hero-btns button { width: 100%; }
+
+  .cta-inner { padding: 28px 16px; border-radius: 16px; }
+  .cta-inner h2 { font-size: 22px; }
+  .cta-inner p  { font-size: 14px; }
+  .cta-btns { flex-direction: column; width: 100%; }
+  .cta-btns button { width: 100%; }
+
+  .startup-inner { padding: 20px 12px; }
+  .offer-grid { grid-template-columns: 1fr 1fr; }
+
+  .rocket-card { width: 100%; max-width: 320px; }
+  .hero-card   { width: 100%; max-width: 320px; }
+
+  .testimonials-section { padding: 50px 4%; }
+  .testimonials-title   { font-size: 26px; }
+  .testimonials-sub     { font-size: 14px; }
+  .testimonials-grid    { gap: 18px; }
+  .testimonial-card     { padding: 20px; }
+
+  .trust { padding: 20px 4%; }
+  .trust-inner { padding: 14px 16px; border-radius: 10px; }
+  .trust-logo { padding: 5px 10px; }
+  .trust-svg { height: 20px; }
 }
 
 /* ─────────────────────────────────────────────
    SCROLL / OVERFLOW FIX
 ───────────────────────────────────────────── */
-.hero,
-.trust,
-.offer,
-.engage,
-.tech,
-.industries,
-.startup,
-.how,
-.why,
-.testimonials,
-.cta {
+.hero, .trust, .offer, .engage, .tech,
+.industries, .startup, .how, .why,
+.testimonials-section, .cta {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
 }
 
-.hero-card,
-.rocket-card,
-.eng-card,
-.why-card,
-.ind-card,
-.testi-card {
+.hero-card, .rocket-card, .eng-card,
+.why-card, .ind-card, .testimonial-card {
   box-sizing: border-box;
   max-width: 100%;
   min-width: 0;

@@ -1,6 +1,8 @@
 import { useState , useEffect } from "react";
 // import { login as apiLogin } from "../api/Api";
 
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -230,7 +232,24 @@ function ApiStatusBadge() {
   //     .catch(() => setStatus("offline"));
   // });
   useEffect(() => {
-  setStatus("online");
+  const loadSettings = async () => {
+    try {
+      const docRef = doc(db, "siteSettings", "main");
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log(docSnap.data());
+        setStatus("online");
+      } else {
+        setStatus("offline");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("offline");
+    }
+  };
+
+  loadSettings();
 }, []);
 
   const color = status === "online" ? "#22c55e" : status === "offline" ? "#ef4444" : "#f59e0b";

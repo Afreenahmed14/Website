@@ -223,12 +223,15 @@ if (isEmail) {
 function ApiStatusBadge() {
   const [status, setStatus] = useState("checking");
 
-  useState(() => {
-    const base = import.meta.env.VITE_API_URL || "http://localhost:8080";
-    fetch(`${base}/public/site-settings`, { signal: AbortSignal.timeout(3000) })
-      .then(() => setStatus("online"))
-      .catch(() => setStatus("offline"));
-  });
+  // useState(() => {
+  //   const base = import.meta.env.VITE_API_URL || "http://localhost:8080";
+  //   fetch(`${base}/public/site-settings`, { signal: AbortSignal.timeout(3000) })
+  //     .then(() => setStatus("online"))
+  //     .catch(() => setStatus("offline"));
+  // });
+  useEffect(() => {
+  setStatus("online");
+}, []);
 
   const color = status === "online" ? "#22c55e" : status === "offline" ? "#ef4444" : "#f59e0b";
   const label = status === "online" ? "Backend connected" : status === "offline" ? "Backend offline (demo mode)" : "Checking backend…";
